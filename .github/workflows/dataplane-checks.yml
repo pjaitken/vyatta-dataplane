@@ -1,5 +1,5 @@
 name: checkpatch review
-on: [pull_request]
+on: [push]
 jobs:
   checkpatch_review:
     name: the checkpatch review
