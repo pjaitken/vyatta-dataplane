@@ -1,10 +1,11 @@
-name: checkpatch review
+name: dataplane checks
 on: [push]
 jobs:
-  checkpatch_review:
-    name: the checkpatch review
+  checkpatch:
+    name: checkpatch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run checkpatch review
       uses: webispy/checkpatch-action@master
+    - run: echo "Job status is ${{ job.status }}."
