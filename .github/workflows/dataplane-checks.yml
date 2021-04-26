@@ -22,6 +22,7 @@ jobs:
           echo GITHUB_BASE_REF=$GITHUB_BASE_REF
       - name: checkpatch
         run: |
-          cd ${{ github.workspace }}       
+          cd ${{ github.workspace }}
+          git branch -a
           ./scripts/checkpatch_wrapper.sh origin/master $GITHUB_SHA
       - run: echo "🍏 This job's status is ${{ job.status }}."
