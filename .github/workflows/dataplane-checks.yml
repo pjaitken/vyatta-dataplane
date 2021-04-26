@@ -23,8 +23,5 @@ jobs:
       - name: checkpatch
         run: |
           cd ${{ github.workspace }}
-          pwd
-          ls
-          ls scripts
-          ./scripts/checkpatch.pl origin/master $GITHUB_SHA
+          scripts/checkpatch_wrapper.pl origin/master $GITHUB_SHA
       - run: echo "🍏 This job's status is ${{ job.status }}."
