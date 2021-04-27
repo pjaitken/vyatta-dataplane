@@ -12,14 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-    - name: emit info
-      run: |
-        echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
-        echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
-        git branch -a
-        git diff origin/master HEAD
-    - name: Run tests
+    - name: fetch
+      run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+    - name: Run gitlint
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
 
