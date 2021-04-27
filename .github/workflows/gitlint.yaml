@@ -1,11 +1,14 @@
+# Run gitlint on pull requests.
+# See https://github.com/marketplace/actions/gitlint-action
+
 name: GitLint
 
 on: pull_request
 
 jobs:
   gitlint:
-    runs-on: ubuntu-latest
     name: GitLint
+    runs-on: ubuntu-latest
     steps:
       - name: Lint commits, branches, and pull requests
         uses: aschbacd/gitlint-action@v1.0.0
@@ -15,3 +18,4 @@ jobs:
           commit-message-subject-max-length: 50
           prohibit-unknown-commit-authors: true
           prohibit-unknown-commit-committers: true
+      - run: echo "Job status is ${{ job.status }}."
