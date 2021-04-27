@@ -11,18 +11,20 @@ jobs:
       image: jorisroovers/gitlint
 
     steps:
-    #- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
     - run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-#     git diff origin/master HEAD
-#   - name: Install dependencies
-#     run: shards install
-#       git show origin/${GITHUB_BASE_REF}
-#       git show origin/${GITHUB_HEAD_REF}
     - name: emit info
       run: |
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
         git branch -a
+        git diff origin/master HEAD
     - name: Run tests
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
+
+#     git diff origin/master HEAD
+#   - name: Install dependencies
+#     run: shards install
+#       git show origin/${GITHUB_BASE_REF}
+#       git show origin/${GITHUB_HEAD_REF}
