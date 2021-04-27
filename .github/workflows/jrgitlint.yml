@@ -2,24 +2,18 @@ name: JR GitLint
 
 on: [push, pull_request]
 
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    container:
-      image: jorisroovers/gitlint
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: fetch
+jobs:                                                                            
+  gitlint:                                                                       
+                                                                                 
+    runs-on: ubuntu-latest                                                       
+                                                                                 
+    container:                                                                   
+      image: jorisroovers/gitlint                                                
+                                                                                 
+    steps:                                                                       
+    - uses: actions/checkout@v2                                                  
+    - name: git fetch                                                              
       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-    - name: Run gitlint
-      run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
-    - run: echo "Job status is ${{ job.status }}."
-
-#     git diff origin/master HEAD
-#   - name: Install dependencies
-#     run: shards install
-#       git show origin/${GITHUB_BASE_REF}
-#       git show origin/${GITHUB_HEAD_REF}
+    - name: run gitlint                                                          
+      run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
+    - run: echo "Job status is ${{ job.status }}." 
