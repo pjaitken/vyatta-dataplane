@@ -1,5 +1,7 @@
-name: dataplane checks
+name: checkpatch
+
 on: [push]
+
 jobs:
   checkpatch:
     name: checkpatch
