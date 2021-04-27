@@ -19,9 +19,10 @@ jobs:
     - name: emit info
       run: |
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
-        git show origin/${GITHUB_BASE_REF}
+#       git show origin/${GITHUB_BASE_REF}
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
-        git show origin/${GITHUB_HEAD_REF}
+#       git show origin/${GITHUB_HEAD_REF}
+        git branch -a
     - name: Run tests
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
