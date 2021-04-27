@@ -15,5 +15,4 @@ jobs:
           commit-message-subject-max-length: 50
           prohibit-unknown-commit-authors: true
           prohibit-unknown-commit-committers: true
-          re-commit-message-subject: "^[A-Z].*((?!\\.).)$"
           re-pull-request-title: "^[A-Z].*((?!\\.).)$"
