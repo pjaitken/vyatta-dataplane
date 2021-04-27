@@ -15,8 +15,9 @@ jobs:
 #   - name: Install dependencies
 #     run: shards install
     - name: emit info
-      run: echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
-      run: echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+      run: |
+        echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
+        echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
     - name: Run tests
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
