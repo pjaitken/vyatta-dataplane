@@ -16,8 +16,8 @@ jobs:
       run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
     - name: git show
       run: |
-          echo "GITHUB_HEAD_REF=${ GITHUB_HEAD_REF }"
-          echo "GITHUB_BASE_REF=${ GITHUB_BASE_REF }"
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
           echo "github.event.pull_request.head=${{ github.event.pull_request.head }}"
           echo "github.event.pull_request.base=${{ github.event.pull_request.base }}"
           echo "github.event.pull_request.head.sha=${{ github.event.pull_request.head.sha }}"
