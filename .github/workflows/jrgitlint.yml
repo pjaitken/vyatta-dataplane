@@ -32,8 +32,10 @@ jobs:
       run: git log --pretty=oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
     - name: git log 2
       run: git log --pretty=oneline origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
-    - name: run gitlint
+    - name: run gitlint 1
       run: gitlint --commits ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+    - name: run gitlint 2
+      run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
 #     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
     - run: echo "Job status is ${{ job.status }}." 
 
