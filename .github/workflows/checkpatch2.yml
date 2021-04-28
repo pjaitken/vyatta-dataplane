@@ -11,6 +11,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: git fetch
       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+    - name: show
+      run: |
+        git show origin/${GITHUB_BASE_REF}
+        git show origin/${GITHUB_HEAD_REF}
+        git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - name: run checkpatch
       run: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
