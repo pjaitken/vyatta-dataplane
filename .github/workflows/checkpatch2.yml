@@ -1,0 +1,16 @@
+name: checkpatch2
+
+on: pull_request
+
+jobs:
+  checkpatch:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: git fetch
+      run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+    - name: run checkpatch
+      run: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
+    - run: echo "Job status is ${{ job.status }}."
