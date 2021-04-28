@@ -22,11 +22,11 @@ jobs:
           echo "github.event.pull_request.base=${{ github.event.pull_request.base }}"
           echo "github.event.pull_request.head.sha=${{ github.event.pull_request.head.sha }}"
           echo "github.event.pull_request.base.sha=${{ github.event.pull_request.base.sha }}"
-    - name: git show H
-      run: git show ${{ github.event.pull_request.head.sha }}
+#    - name: git show H
+#      run: git show ${{ github.event.pull_request.head.sha }}
 #     run: git show ${{ GITHUB_HEAD_REF }}
-    - name: git show B
-      run: git show ${{ github.event.pull_request.head.sha }}
+#    - name: git show B
+#      run: git show ${{ github.event.pull_request.head.sha }}
 #     run: git show ${{ GITHUB_BASE_REF }}
     - name: git log
       run: git log --pretty=oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
