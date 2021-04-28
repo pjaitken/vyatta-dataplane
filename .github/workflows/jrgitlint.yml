@@ -28,6 +28,8 @@ jobs:
     - name: git show B
       run: git show ${{ github.event.pull_request.head.sha }}
 #     run: git show ${{ GITHUB_BASE_REF }}
+    - name: git log
+      run: git log --pretty=oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
     - name: run gitlint
       run: gitlint --commits ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
 #     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
