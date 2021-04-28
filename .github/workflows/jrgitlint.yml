@@ -15,5 +15,7 @@ jobs:
     - name: git fetch                                                              
       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
     - name: run gitlint                                                          
-      run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
+      run: gitlint --commits ${GITHUB_BASE_REF}..${GITHUB_HEAD_REF}  
     - run: echo "Job status is ${{ job.status }}." 
+
+#     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
