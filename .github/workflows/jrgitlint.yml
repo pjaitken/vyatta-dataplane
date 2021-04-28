@@ -16,7 +16,11 @@ jobs:
       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
     - name: git show
       run: |
-        git show
+          git branch
+          echo "====="
+          git branch -a
+          echo "====="
+#         git show
 #         git show ${GITHUB_HEAD_REF}  
 #         git show origin/${GITHUB_BASE_REF}
     - name: run gitlint                                                          
