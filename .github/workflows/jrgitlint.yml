@@ -13,18 +13,15 @@ jobs:
     steps:                                                                       
     - uses: actions/checkout@v2                                                  
     - name: git fetch                                                              
-      run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+      run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
     - name: git show
       run: |
-          git branch
-          echo "====="
-          git branch -a
-          echo "====="
-#         git show
-#         git show ${GITHUB_HEAD_REF}  
-#         git show origin/${GITHUB_BASE_REF}
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
+          echo "github.event.pull_request.head.sha=${{ github.event.pull_request.head.sha }}"
     - name: run gitlint                                                          
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
     - run: echo "Job status is ${{ job.status }}." 
 
 #     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
+#     run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
