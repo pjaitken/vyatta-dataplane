@@ -7,6 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    container:
+      image: webispy/checkpatch
+
     steps:
     - uses: actions/checkout@v2
 
@@ -18,13 +21,12 @@ jobs:
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
         echo "PATH=${PATH}"
-        which gbp
-        which osc
+        which checkpatch.pl
 #        find / -name checkpatch.pl
 #        ls -l /usr/bin/checkpatch.pl
 #        /usr/bin/checkpatch.pl -h
 #        checkpatch.pl
-#       which checkpatch.pl
+
 
 #    - name: Run DPDK checkpatches.sh review
 #      uses: webispy/checkpatch-action@master
