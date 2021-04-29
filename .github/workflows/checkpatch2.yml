@@ -13,10 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: pwd
+       run: pwd
+       
     - name: git fetch
-      run: |
-        pwd
-        git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+      run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
 
     - name: show
       run: |
