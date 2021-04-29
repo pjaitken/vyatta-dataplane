@@ -1,0 +1,22 @@
+# Run size check on pull requests.
+
+name: size check
+
+on: pull_request
+
+jobs:
+  size check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: git fetch
+      run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+    - name: echo
+      run: |
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
+    - name: run size check
+      run: ./scripts/commit_size_check.sh --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
+    - run: echo "Job status is ${{ job.status }}."
