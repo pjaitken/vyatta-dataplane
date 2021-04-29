@@ -5,7 +5,7 @@ name: size check
 on: pull_request
 
 jobs:
-  size check:
+  size_check:
 
     runs-on: ubuntu-latest
 
