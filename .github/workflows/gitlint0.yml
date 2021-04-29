@@ -16,6 +16,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: git fetch
       run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+    - name: echo
+      run: |
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
+    - name: head
+      run: git log origin/${GITHUB_HEAD_REF}
+    - name: base
+      run: git log origin/${GITHUB_BASE_REF}
     - name: run gitlint
       run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
