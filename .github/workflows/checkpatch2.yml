@@ -9,12 +9,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: git fetch
-      run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+      run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+
     - name: show
       run: |
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
-    - name: run checkpatch
-      run: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF}
+
+    - name: Run DPDK checkpatches.sh review
+      uses: webispy/checkpatch-action@master
+      env:
+        DPDK_CHECKPATCH_PATH: /usr/bin/checkpatch.pl
+        CHECKPATCH_COMMAND: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF}
+        
+#    - name: run checkpatch
+#      run: ./scripts/checkpatch_wrapper.sh origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF}
     - run: echo "Job status is ${{ job.status }}."
