@@ -18,7 +18,9 @@ jobs:
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
         echo "PATH=${PATH}"
-        find / -name checkpatch.pl
+        which gbp
+        which osc
+#        find / -name checkpatch.pl
 #        ls -l /usr/bin/checkpatch.pl
 #        /usr/bin/checkpatch.pl -h
 #        checkpatch.pl
