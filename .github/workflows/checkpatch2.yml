@@ -17,6 +17,7 @@ jobs:
       run: |
         echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
         echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+        echo "PATH=${PATH}"
 
 #    - name: Run DPDK checkpatches.sh review
 #      uses: webispy/checkpatch-action@master
