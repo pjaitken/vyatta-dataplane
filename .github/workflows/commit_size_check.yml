@@ -12,6 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: which
+      run: |
+        which dpkg
+        which apt
+        
     - name: dpkg
       run: |
         dpkg -l | grep osc
