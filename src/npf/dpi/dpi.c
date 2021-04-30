@@ -9,6 +9,8 @@
  * SPDX-License-Identifier: LGPL-2.1-only
  */
 
+// blah blah blah, this line will be too long and checkpatch will complain about it.
+
 #include <errno.h>
 #include <stdbool.h>
 #include <string.h>

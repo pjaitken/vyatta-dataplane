@@ -1,0 +1,44 @@
+name: JR GitLint
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:                                                                            
+  gitlint:                                                                       
+                                                                                 
+    runs-on: ubuntu-latest                                                       
+                                                                                 
+    container:                                                                   
+      image: jorisroovers/gitlint                                                
+                                                                                 
+    steps:                                                                       
+    - uses: actions/checkout@v2                                                  
+    - name: git fetch                                                              
+      run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
+    - name: git show
+      run: |
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "GITHUB_BASE_REF=${GITHUB_BASE_REF}"
+          echo "github.event.pull_request.head.ref=${{ github.event.pull_request.head.ref }}"
+          echo "github.event.pull_request.base.ref=${{ github.event.pull_request.base.ref }}"
+          echo "github.event.pull_request.head.sha=${{ github.event.pull_request.head.sha }}"
+          echo "github.event.pull_request.base.sha=${{ github.event.pull_request.base.sha }}"
+#    - name: git show H
+#      run: git show ${{ github.event.pull_request.head.sha }}
+#     run: git show ${{ GITHUB_HEAD_REF }}
+#    - name: git show B
+#      run: git show ${{ github.event.pull_request.head.sha }}
+#     run: git show ${{ GITHUB_BASE_REF }}
+    - name: git log 1
+      run: git log --pretty=oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+    - name: git log 2
+      run: git log --pretty=oneline origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
+    - name: run gitlint 1
+      run: gitlint --commits ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
+    - name: run gitlint 2
+      run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}
+#     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
+    - run: echo "Job status is ${{ job.status }}." 
+
+#     run: gitlint --commits origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF}  
+#     run: git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+# run: git log --abbrev-commit ${GITHUB_BASE_REF}..${GITHUB_HEAD_REF}
