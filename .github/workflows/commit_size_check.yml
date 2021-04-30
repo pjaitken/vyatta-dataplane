@@ -17,10 +17,12 @@ jobs:
         which dpkg
         which apt
         
-    - name: dpkg
+    - name: dpkg-l
       run: |
-        dpkg -l | grep osc
-        dpkg -l | grep buildp
+        dpkg -l
+        
+    - name: install
+      run: apt-get install git-buildpackage
 
     - name: git fetch
       run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
