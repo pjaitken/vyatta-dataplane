@@ -11,21 +11,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: which
-      run: |
-        which dpkg
-        which apt
-        
-#    - name: dpkg-l
-#      run: |
-#        dpkg -l
-        
+       
     - name: install
-      run: sudo apt-get install git-buildpackage osc
+      run: sudo apt-get install git-buildpackage osc debhelper
 
     - name: which
-      run: which gbp osc
+      run: which gbp osc dh
 
     - name: git fetch
       run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
