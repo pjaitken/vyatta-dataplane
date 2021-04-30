@@ -17,9 +17,9 @@ jobs:
         which dpkg
         which apt
         
-    - name: dpkg-l
-      run: |
-        dpkg -l
+#    - name: dpkg-l
+#      run: |
+#        dpkg -l
         
     - name: install
       run: sudo apt-get install git-buildpackage osc
@@ -29,7 +29,10 @@ jobs:
 
     - name: git fetch
       run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
-    
+
+    - name: gbp
+      run: pwd && gbp buildpackage --git-verbose --git-ignore-branch -S --no-check-builddeps -us -uc
+
     - name: run size check
       run: ./scripts/commit_size_check.sh origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF}
       
