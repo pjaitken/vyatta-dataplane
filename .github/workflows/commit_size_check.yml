@@ -22,7 +22,10 @@ jobs:
         dpkg -l
         
     - name: install
-      run: sudo apt-get install git-buildpackage
+      run: sudo apt-get install git-buildpackage osc
+
+    - name: which
+      run: which gbp osc
 
     - name: git fetch
       run: git fetch --no-tags --prune origin +refs/heads/*:refs/remotes/origin/*
